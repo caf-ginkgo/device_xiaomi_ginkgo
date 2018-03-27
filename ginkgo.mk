@@ -232,6 +232,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.device_config.runtime_native.usap_pool_enabled=true
 
+# Display
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.display.disable_rotator_downscale=1
+
 # SF
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.renderer=skiavk \
