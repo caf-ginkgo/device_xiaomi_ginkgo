@@ -368,7 +368,8 @@ TARGET_PRESIL_SLOW_BOARD := true
 PRODUCT_PACKAGES += \
     FrameworksGinkgo \
     SystemUIGinkgo \
-    NotchBarKiller
+    NotchBarKiller \
+    NoCutoutOverlay
 
 #----------------------------------------------------------------------
 # wlan specific
