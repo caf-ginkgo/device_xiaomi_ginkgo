@@ -142,6 +142,8 @@ on property:sys.shutdown.requested=*
 
 on charger
     start vendor.hvdcp_opti
+    setprop vendor.usb.controller 4e00000.dwc3
+    setprop sys.usb.configfs 1
 
 ## import cne init file
 #on post-fs
