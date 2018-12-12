@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012-2018 The Linux Foundation. All rights reserved.
+<!-- Copyright (C) 2012-2019 The Linux Foundation. All rights reserved.
      Not a contribution.
      Copyright (C) 2012-2013 The Android Open Source Project
 
@@ -81,7 +81,7 @@ Only the three quirks included above are recognized at this point:
 -->
 
 <!--
- SM6150 Non-Secure decoder capabilities
+ trinket Non-Secure decoder capabilities
  _________________________________________________________
  | Codec       | W       H       fps     Mbps    MB/s    |
  |_____________|_________________________________________|
@@ -90,13 +90,12 @@ Only the three quirks included above are recognized at this point:
  | mpeg4-sw    | 1920    1088    30      40       244800 |
  | vp8         | 3840    2160    30      100      972000 |
  | vp9         | 4096    2160    24      100      829440 |
- | vc1         | 1920    1088    30      20       244800 |
  | div4/5/6-sw | 1920    1088    30      10       244800 |
  | h263-sw     | 864     480     30      16        48600 |
  | mpeg2       | 1920    1088    30      40       244800 |
  |_____________|_________________________________________|
 
- SM6150 Secure decoder capabilities
+ trinket Secure decoder capabilities
  ______________________________________________________
  | Codec    | W       H       fps     Mbps    MB/s    |
  |__________|_________________________________________|
@@ -106,7 +105,7 @@ Only the three quirks included above are recognized at this point:
  | mpeg2    | 1920    1088    30      35       244800 |
  |__________|_________________________________________|
 
- SM6150 Non-Secure encoder capabilities (Secure not supported)
+ trinket Non-Secure encoder capabilities (Secure not supported)
  ______________________________________________________
  | Codec    | W       H       fps     Mbps    MB/s    |
  |__________|_________________________________________|
@@ -357,18 +356,6 @@ Only the three quirks included above are recognized at this point:
             <Limit name="blocks-per-second" min="1" max="244800" />
             <Limit name="frame-rate" range="1-30" />
             <Limit name="bitrate" range="1-10000000" />
-            <Limit name="concurrent-instances" max="16" />
-        </MediaCodec>
-        <MediaCodec name="OMX.qti.video.decoder.vc1sw" type="video/x-ms-wmv" >
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-            <Limit name="size" min="64x64" max="1920x1088" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="244800" />
-            <Limit name="bitrate" range="1-20000000" />
-            <Limit name="frame-rate" range="1-30" />
-            <Feature name="adaptive-playback" />
             <Limit name="concurrent-instances" max="16" />
         </MediaCodec>
     </Decoders>
