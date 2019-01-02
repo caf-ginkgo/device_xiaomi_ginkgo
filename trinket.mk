@@ -64,7 +64,7 @@ ifneq ($(TARGET_DISABLE_DASH), true)
 endif
 
 ifneq ($(strip $(QCPATH)),)
-#    PRODUCT_BOOT_JARS += WfdCommon
+    PRODUCT_BOOT_JARS += WfdCommon
 endif
 
 # Video platform properties file
