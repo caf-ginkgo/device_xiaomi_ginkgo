@@ -204,6 +204,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
 
+# USB default HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
 PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf
