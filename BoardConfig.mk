@@ -102,7 +102,6 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_q6.ko \
     $(KERNEL_MODULES_OUT)/audio_usf.ko \
     $(KERNEL_MODULES_OUT)/audio_pinctrl_wcd.ko \
-    $(KERNEL_MODULES_OUT)/audio_pinctrl_lpi.ko \
     $(KERNEL_MODULES_OUT)/audio_swr.ko \
     $(KERNEL_MODULES_OUT)/audio_wcd_core.ko \
     $(KERNEL_MODULES_OUT)/audio_swr_ctrl.ko \
@@ -121,6 +120,9 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_rx_macro.ko \
     $(KERNEL_MODULES_OUT)/audio_tx_macro.ko \
     $(KERNEL_MODULES_OUT)/audio_wcd_spi.ko \
+    $(KERNEL_MODULES_OUT)/audio_wcd_cpe.ko \
+    $(KERNEL_MODULES_OUT)/audio_cpe_lsm.ko \
+    $(KERNEL_MODULES_OUT)/audio_wcd9335.ko \
     $(KERNEL_MODULES_OUT)/audio_native.ko \
     $(KERNEL_MODULES_OUT)/audio_machine_trinket.ko \
     $(KERNEL_MODULES_OUT)/wil6210.ko \
