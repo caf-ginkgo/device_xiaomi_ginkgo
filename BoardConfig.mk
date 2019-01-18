@@ -43,6 +43,9 @@ BOARD_USES_WIPOWER := true
 
 USE_OPENGL_RENDERER := true
 
+# Display
+TARGET_SCREEN_DENSITY := 440
+
 # DT2W
 TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
 
