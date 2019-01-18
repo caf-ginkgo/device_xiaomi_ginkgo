@@ -266,6 +266,8 @@ ENABLE_KM_4_0 := true
 # Enable flag to support slow devices
 TARGET_PRESIL_SLOW_BOARD := true
 
+DEVICE_PACKAGE_OVERLAYS += device/qcom/trinket/overlay
+
 # dm-verity definitions
 ifneq ($(BOARD_AVB_ENABLE), true)
  PRODUCT_SUPPORTS_VERITY := true
