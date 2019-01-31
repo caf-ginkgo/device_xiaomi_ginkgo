@@ -134,7 +134,11 @@ PRODUCT_PACKAGES_DEBUG += bootctl
 endif
 
 DEVICE_MANIFEST_FILE := device/qcom/$(TRINKET)/manifest.xml
+DEVICE_MATRIX_FILE := device/qcom/common/compatibility_matrix.xml
 DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/$(TRINKET)/framework_manifest.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    device/qcom/common/vendor_framework_compatibility_matrix.xml \
+    device/qcom/$(TRINKET)/vendor_framework_compatibility_matrix.xml
 
 TARGET_USES_NQ_NFC := true
 ifeq ($(TARGET_USES_NQ_NFC),true)
@@ -269,3 +273,6 @@ ENABLE_VENDOR_RIL_SERVICE := true
 #Thermal
 PRODUCT_PACKAGES += android.hardware.thermal@1.0-impl \
                     android.hardware.thermal@1.0-service
+
+TARGET_USES_MKE2FS := true
+$(call inherit-product, build/make/target/product/product_launched_with_p.mk)
