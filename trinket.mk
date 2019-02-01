@@ -265,6 +265,10 @@ PRODUCT_PACKAGES += vndk_package
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE:=true
 TARGET_MOUNT_POINTS_SYMLINKS := false
 
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.crypto.volume.filenames_mode = "aes-256-cts" \
+ro.crypto.allow_encrypt_override = true
+
 ENABLE_VENDOR_RIL_SERVICE := true
 #Thermal
 PRODUCT_PACKAGES += android.hardware.thermal@1.0-impl \
