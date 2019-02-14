@@ -32,7 +32,7 @@ BTFM.bin                /dev/block/bootdevice/by-name/bluetooth
 dspso.bin               /dev/block/bootdevice/by-name/dsp
 mdtpsecapp.mbn          /dev/block/bootdevice/by-name/mdtpsecapp
 mdtp.img                /dev/block/bootdevice/by-name/mdtp
-
+rpm.mbn                 /dev/block/bootdevice/by-name/rpm
 xbl.elf                 /dev/block/bootdevice/by-name/xbl
 xbl_config.elf          /dev/block/bootdevice/by-name/xbl_config
 tz.mbn                  /dev/block/bootdevice/by-name/tz
@@ -55,6 +55,7 @@ uefi_sec.mbn            /dev/block/bootdevice/by-name/uefisecapp
 xbl.elf.bak             /dev/block/bootdevice/by-name/xblbak
 xbl_config.elf.bak      /dev/block/bootdevice/by-name/xbl_configbak
 tz.mbn.bak              /dev/block/bootdevice/by-name/tzbak
+rpm.mbn.bak             /dev/block/bootdevice/by-name/rpmbak
 aop.mbn.bak             /dev/block/bootdevice/by-name/aopbak
 hyp.mbn.bak             /dev/block/bootdevice/by-name/hypbak
 km4.mbn.bak             /dev/block/bootdevice/by-name/keymasterbak
