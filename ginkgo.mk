@@ -224,6 +224,11 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := vendor/qcom/opensource/core-utils/
 ODM_MANIFEST_WILLOW_FILES := $(LOCAL_PATH)/manifest_willow.xml
 ODM_MANIFEST_SKUS += willow
 
+# External exFat tools
+PRODUCT_PACKAGES += \
+    mkfs.exfat \
+    fsck.exfat
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.ginkgo
