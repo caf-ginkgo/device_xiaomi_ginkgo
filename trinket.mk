@@ -238,6 +238,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES  += \
     ro.opengles.version=196610
 
+#Property for setting the max timeout of autosuspend
+PRODUCT_PROPERTY_OVERRIDES += sys.autosuspend.timeout=500000
+
 #system prop for Bluetooth SOC type
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.qcom.bluetooth.soc=cherokee
