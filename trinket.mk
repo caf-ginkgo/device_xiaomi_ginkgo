@@ -158,10 +158,6 @@ endif
 PRODUCT_PACKAGES += \
     libhealthd.msm
 
-# Fingerprint feature
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
-
 # Adding vendor manifest
 PRODUCT_COPY_FILES += \
     device/qcom/$(TRINKET)/manifest.xml:$(TARGET_COPY_OUT_VENDOR)/manifest.xml
