@@ -203,6 +203,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service
 
+#PASR HAL and APP
+PRODUCT_PACKAGES += \
+    vendor.qti.power.pasrmanager@1.0-service \
+    vendor.qti.power.pasrmanager@1.0-impl \
+    pasrservice
+
+#Property to enable/disable PASR
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.power.pasr.enabled=true
+
 # Sensor conf files
 PRODUCT_COPY_FILES += \
     device/qcom/$(TRINKET)/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
