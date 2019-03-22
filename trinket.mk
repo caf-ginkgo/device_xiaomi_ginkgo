@@ -293,3 +293,7 @@ PRODUCT_PACKAGES += android.hardware.thermal@1.0-impl \
 
 TARGET_USES_MKE2FS := true
 $(call inherit-product, build/make/target/product/product_launched_with_p.mk)
+
+#Property to enable memperfd
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.debug.enable.memperfd = true
