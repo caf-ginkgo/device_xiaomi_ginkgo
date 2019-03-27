@@ -367,7 +367,8 @@ TARGET_PRESIL_SLOW_BOARD := true
 # Overlay
 PRODUCT_PACKAGES += \
     FrameworksGinkgo \
-    SystemUIGinkgo
+    SystemUIGinkgo \
+    NotchBarKiller
 
 #----------------------------------------------------------------------
 # wlan specific
