@@ -299,6 +299,8 @@ ENABLE_VENDOR_RIL_SERVICE := true
 PRODUCT_PACKAGES += android.hardware.thermal@1.0-impl \
                     android.hardware.thermal@1.0-service
 
+PRODUCT_PACKAGES += cameraconfig.txt
+
 TARGET_USES_MKE2FS := true
 $(call inherit-product, build/make/target/product/product_launched_with_p.mk)
 
