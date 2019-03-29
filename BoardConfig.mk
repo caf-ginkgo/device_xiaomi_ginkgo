@@ -207,6 +207,9 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 #Enable LM
 TARGET_USES_LM := true
 
+#Enable PreKill
+TARGET_ENABLE_PREKILL := true
+
 # Enable QG user space
 PMIC_QG_SUPPORT := true
 
