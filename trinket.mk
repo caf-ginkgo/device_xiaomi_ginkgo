@@ -184,9 +184,7 @@ PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/msm_irqbalance.conf:$(TARGET_COPY_O
 PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 #PowerHAL
-TARGET_USES_NON_LEGACY_POWERHAL := true
-PRODUCT_PACKAGES += android.hardware.power@1.2-impl
-PRODUCT_PACKAGES += android.hardware.power@1.2-service
+TARGET_USES_NON_LEGACY_POWERHAL := false
 
 # Camera configuration file. Shared by passthrough/binderized camera HAL
 PRODUCT_PACKAGES += camera.device@3.2-impl
