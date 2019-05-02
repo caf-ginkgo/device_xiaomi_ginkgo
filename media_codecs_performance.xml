@@ -24,8 +24,8 @@ limitations under the License.
         <MediaCodec name="OMX.qcom.video.encoder.avc" type="video/avc" update="true">
             <Limit name="measured-frame-rate-320x240" range="94-128" />
             <Limit name="measured-frame-rate-720x480" range="55-77" />
-            <Limit name="measured-frame-rate-1280x720" range="32-44" />
-            <Limit name="measured-frame-rate-1920x1080" range="19-26" />
+            <Limit name="measured-frame-rate-1280x720" range="44-61" />
+            <Limit name="measured-frame-rate-1920x1080" range="30-40" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.encoder.hevc" type="video/hevc" update="true">
             <Limit name="measured-frame-rate-320x240" range="92-127" />
@@ -35,7 +35,7 @@ limitations under the License.
             <Limit name="measured-frame-rate-3840x2160" range="11-16" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.encoder.h263sw" type="video/3gpp" update="true">
-            <Limit name="measured-frame-rate-176x144" range="68-96" />
+            <Limit name="measured-frame-rate-176x144" range="110-200" />
             <Limit name="measured-frame-rate-352x288" range="34-46" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.encoder.mpeg4sw" type="video/mp4v-es" update="true">
@@ -47,8 +47,8 @@ limitations under the License.
         <MediaCodec name="OMX.qcom.video.encoder.vp8" type="video/x-vnd.on2.vp8" update="true">
             <Limit name="measured-frame-rate-320x180" range="95-143" />
             <Limit name="measured-frame-rate-640x360" range="76-93" />
-            <Limit name="measured-frame-rate-1280x720" range="32-48" />
-            <Limit name="measured-frame-rate-1920x1080" range="21-26" />
+            <Limit name="measured-frame-rate-1280x720" range="58-80" />
+            <Limit name="measured-frame-rate-1920x1080" range="30-40" />
         </MediaCodec>
         <MediaCodec name="OMX.google.h264.encoder" type="video/avc" update="true">
             <Limit name="measured-frame-rate-320x240" range="97-119" />
