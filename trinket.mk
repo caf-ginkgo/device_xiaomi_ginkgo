@@ -1,14 +1,29 @@
+ALLOW_MISSING_DEPENDENCIES=true
+# Default A/B configuration.
+ENABLE_AB ?= true
+
+# For QSSI builds, we skip building the system image. Instead we build the
+# "non-system" images (that we support).
+PRODUCT_BUILD_SYSTEM_IMAGE := false
+PRODUCT_BUILD_SYSTEM_OTHER_IMAGE := false
+PRODUCT_BUILD_VENDOR_IMAGE := true
+PRODUCT_BUILD_PRODUCT_IMAGE := false
+PRODUCT_BUILD_PRODUCT_SERVICES_IMAGE := false
+PRODUCT_BUILD_ODM_IMAGE := false
+ifeq ($(ENABLE_AB), true)
+PRODUCT_BUILD_CACHE_IMAGE := false
+else
+PRODUCT_BUILD_CACHE_IMAGE := true
+endif
+PRODUCT_BUILD_RAMDISK_IMAGE := true
+PRODUCT_BUILD_USERDATA_IMAGE := true
+
+# Also, since we're going to skip building the system image, we also skip
+# building the OTA package. We'll build this at a later step.
+TARGET_SKIP_OTA_PACKAGE := true
+
 # Enable AVB 2.0
 BOARD_AVB_ENABLE := true
-
-TARGET_DEFINES_DALVIK_HEAP := true
-#Inherit all except heap growth limit from phone-xhdpi-2048-dalvik-heap.mk
-PRODUCT_PROPERTY_OVERRIDES  += \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapsize=256m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m
 
 # Enable chain partition for system, to facilitate system-only OTA in Treble.
 BOARD_AVB_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
@@ -18,8 +33,16 @@ BOARD_AVB_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
 #target name, shall be used in all makefiles
 TRINKET = trinket
+TARGET_DEFINES_DALVIK_HEAP := true
+$(call inherit-product, device/qcom/qssi/common64.mk)
 
-$(call inherit-product, device/qcom/common/common64.mk)
+#Inherit all except heap growth limit from phone-xhdpi-2048-dalvik-heap.mk
+PRODUCT_PROPERTY_OVERRIDES  += \
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.heapsize=512m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapmaxfree=8m
 
 PRODUCT_NAME := $(TRINKET)
 PRODUCT_DEVICE := $(TRINKET)
@@ -30,9 +53,6 @@ PRODUCT_MODEL := $(TRINKET) for arm64
 TARGET_USES_AOSP := false
 TARGET_USES_AOSP_FOR_AUDIO := false
 TARGET_USES_QCOM_BSP := false
-
-# Default A/B configuration.
-ENABLE_AB ?= true
 
 # RRO configuration
 TARGET_USES_RRO := true
@@ -47,13 +67,7 @@ BOARD_FRP_PARTITION_NAME := frp
 PRODUCT_PACKAGES += libGLES_android
 
 -include $(QCPATH)/common/config/qtic-config.mk
--include hardware/qcom/display/config/trinket.mk
 
-$(warning ****** TRINKET code name is: $(TRINKET))
-# Video seccomp policy files
-PRODUCT_COPY_FILES += \
-    device/qcom/$(TRINKET)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
-    device/qcom/$(TRINKET)/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
 
 PRODUCT_BOOT_JARS += tcmiface
 PRODUCT_BOOT_JARS += telephony-ext
@@ -61,35 +75,14 @@ PRODUCT_PACKAGES += telephony-ext
 
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
-TARGET_DISABLE_DASH := true
 TARGET_DISABLE_QTI_VPP := true
 
-ifneq ($(TARGET_DISABLE_DASH), true)
-    PRODUCT_BOOT_JARS += qcmediaplayer
-endif
-
-ifneq ($(strip $(QCPATH)),)
-    PRODUCT_BOOT_JARS += WfdCommon
-endif
-
-# Video platform properties file
-PRODUCT_COPY_FILES += hardware/qcom/media/conf_files/trinket/system_properties.xml:$(TARGET_COPY_OUT_VENDOR)/etc/system_properties.xml
-
-# Video codec configuration files
-ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
-PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_vendor.xml
-
-PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
-PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/media_codecs_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor.xml
-PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml
-
-PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
-endif #TARGET_ENABLE_QC_AV_ENHANCEMENTS
 
 PRODUCT_PACKAGES += android.hardware.media.omx@1.0-impl
 
 # Audio configuration file
--include $(TOPDIR)hardware/qcom/audio/configs/trinket/trinket.mk
+-include $(TOPDIR)vendor/qcom/opensource/audio-hal/primary-hal/configs/trinket/trinket.mk
+
 #Audio DLKM
 AUDIO_DLKM := audio_apr.ko
 AUDIO_DLKM += audio_wglink.ko
@@ -133,20 +126,27 @@ PRODUCT_PACKAGES += update_engine \
     update_engine_client \
     update_verifier \
     bootctrl.$(TRINKET) \
-    brillo_update_payload \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-service
 
 #Boot control HAL test app
 PRODUCT_PACKAGES_DEBUG += bootctl
+
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+  bootctrl.$(TRINKET) \
+  librecovery_updater_msm \
+  libz \
+  libcutils
+
+PRODUCT_PACKAGES += \
+  update_engine_sideload
 endif
 
 DEVICE_MANIFEST_FILE := device/qcom/$(TRINKET)/manifest.xml
 DEVICE_MATRIX_FILE := device/qcom/common/compatibility_matrix.xml
 DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/$(TRINKET)/framework_manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    device/qcom/common/vendor_framework_compatibility_matrix.xml \
-    device/qcom/$(TRINKET)/vendor_framework_compatibility_matrix.xml
+    vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml
 
 TARGET_USES_NQ_NFC := true
 ifeq ($(TARGET_USES_NQ_NFC),true)
@@ -172,6 +172,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.configstore@1.0-service \
     android.hardware.broadcastradio@1.0-impl
+
+PRODUCT_HOST_PACKAGES += \
+    brillo_update_payload \
+    configstore_xmlparser
 
 # FBE support
 PRODUCT_COPY_FILES += \
@@ -307,3 +311,14 @@ $(call inherit-product, build/make/target/product/product_launched_with_p.mk)
 #Property to enable memperfd
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.debug.enable.memperfd = true
+
+CAM_BRINGUP_NEW_SP := true
+
+###################################################################################
+# This is the End of target.mk file.
+# Now, Pickup other split product.mk files:
+###################################################################################
+# TODO: Relocate the system product.mk files pickup into qssi lunch, once it is up.
+$(call inherit-product-if-exists, vendor/qcom/defs/product-defs/system/*.mk)
+$(call inherit-product-if-exists, vendor/qcom/defs/product-defs/vendor/*.mk)
+###################################################################################
