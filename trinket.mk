@@ -171,10 +171,6 @@ PRODUCT_HOST_PACKAGES += \
     brillo_update_payload \
     configstore_xmlparser
 
-# FBE support
-PRODUCT_COPY_FILES += \
-    device/qcom/$(TRINKET)/init.qti.qseecomd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.qseecomd.sh
-
 # MSM IRQ Balancer configuration file
 PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
@@ -260,12 +256,6 @@ PRODUCT_PROPERTY_OVERRIDES += ro.vendor.iocgrp.config=1
 #Enable full treble flag
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 PRODUCT_VENDOR_MOVE_ENABLED := true
-
-#Enable QTI KEYMASTER and GATEKEEPER HIDLs
-KMGK_USE_QTI_SERVICE := true
-
-#Enable KEYMASTER 4.0
-ENABLE_KM_4_0 := true
 
 # Enable flag to support slow devices
 TARGET_PRESIL_SLOW_BOARD := true
