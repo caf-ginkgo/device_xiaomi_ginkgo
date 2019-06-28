@@ -116,9 +116,36 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </interface>
     </hal>
     <hal format="hidl">
+        <name>vendor.qti.hardware.display.allocator</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IQtiAllocator</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.display.mapper</name>
+        <transport arch="32+64">passthrough</transport>
+        <version>2.0</version>
+        <interface>
+            <name>IQtiMapper</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.display.mapperextensions</name>
+        <transport arch="32+64">passthrough</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IQtiMapperExtensions</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.graphics.composer</name>
         <transport>hwbinder</transport>
-        <version>2.2</version>
+        <version>2.3</version>
         <interface>
             <name>IComposer</name>
             <instance>default</instance>
@@ -182,7 +209,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl">
         <name>android.hardware.nfc</name>
         <transport>hwbinder</transport>
-        <version>1.1</version>
+        <version>1.2</version>
         <interface>
             <name>INfc</name>
             <instance>default</instance>
@@ -191,7 +218,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl">
         <name>vendor.nxp.hardware.nfc</name>
         <transport>hwbinder</transport>
-        <version>1.0</version>
+        <version>1.1</version>
         <interface>
             <name>INqNfc</name>
             <instance>default</instance>
@@ -288,6 +315,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <name>vendor.qti.gnss</name>
         <transport>hwbinder</transport>
         <version>2.1</version>
+        <interface>
+            <name>ILocHidlGnss</name>
+            <instance>gnss_vendor</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.gnss</name>
+        <transport>hwbinder</transport>
+        <version>3.0</version>
         <interface>
             <name>ILocHidlGnss</name>
             <instance>gnss_vendor</instance>
@@ -449,6 +485,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.btconfigstore</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IBTConfigStore</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <!-- fm -->
     <hal format="hidl">
         <name>vendor.qti.hardware.fm</name>
@@ -556,7 +601,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl">
         <name>vendor.qti.hardware.data.connection</name>
         <transport>hwbinder</transport>
-        <version>1.0</version>
+        <version>1.1</version>
         <interface>
             <name>IDataConnection</name>
             <instance>slot1</instance>
@@ -575,10 +620,12 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>IDrmFactory</name>
             <instance>default</instance>
         </interface>
-        <fqname>@1.1::ICryptoFactory/clearkey</fqname>
-        <fqname>@1.1::IDrmFactory/clearkey</fqname>
-        <fqname>@1.1::ICryptoFactory/widevine</fqname>
-        <fqname>@1.1::IDrmFactory/widevine</fqname>
+        <fqname>@1.2::ICryptoFactory/clearkey</fqname>
+        <fqname>@1.2::IDrmFactory/clearkey</fqname>
+        <fqname>@1.2::ICryptoFactory/widevine</fqname>
+        <fqname>@1.2::IDrmFactory/widevine</fqname>
+        <fqname>@1.1::ICryptoFactory/wfdhdcp</fqname>
+        <fqname>@1.1::IDrmFactory/wfdhdcp</fqname>
     </hal>
     <!--eSE Powermanager-->
     <hal format="hidl">
@@ -662,16 +709,24 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <!-- WFD HAL Service -->
     <hal format="hidl">
-        <name>com.qualcomm.qti.wifidisplayhal</name>
+        <name>vendor.qti.hardware.wifidisplaysession</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
-            <name>IHDCPSession</name>
-            <instance>wifidisplayhdcphal</instance>
+            <name>IWifiDisplaySession</name>
+            <instance>wifidisplaysession</instance>
         </interface>
         <interface>
-            <name>IDSManager</name>
-            <instance>wifidisplaydshal</instance>
+            <name>IWifiDisplaySessionVideoTrack</name>
+            <instance>wifidisplaysessionvideotrack</instance>
+        </interface>
+        <interface>
+            <name>IWifiDisplaySessionAudioTrack</name>
+            <instance>wifidisplaysessionaudiotrack</instance>
+        </interface>
+        <interface>
+            <name>IWifiDisplaySessionImageTrack</name>
+            <instance>wifidisplaysessionimagetrack</instance>
         </interface>
     </hal>
     <!-- USB HAL -->
@@ -810,6 +865,16 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <version>1.0</version>
         <interface>
             <name>IThermal</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <!-- CapabilityConfigStore HAL Service  -->
+    <hal format="hidl">
+        <name>vendor.qti.hardware.capabilityconfigstore</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ICapabilityConfigStore</name>
             <instance>default</instance>
         </interface>
     </hal>
