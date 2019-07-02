@@ -768,14 +768,16 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
-    <!-- Naural Network HAL -->
+    <!-- Neural Network HAL -->
     <hal format="hidl">
         <name>android.hardware.neuralnetworks</name>
         <transport>hwbinder</transport>
-        <version>1.1</version>
+        <version>1.2</version>
         <interface>
             <name>IDevice</name>
-            <instance>default</instance>
+            <instance>qti-default</instance>
+            <instance>qti-dsp</instance>
+            <instance>qti-gpu</instance>
         </interface>
     </hal>
     <!-- SCVE Panorama hal services -->
