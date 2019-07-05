@@ -2,7 +2,6 @@
 #
 # Product-specific compile-time definitions.
 #
-BUILD_BROKEN_ANDROIDMK_EXPORTS=true
 # TODO(b/124534788): Temporarily allow eng and debug LOCAL_MODULE_TAGS
 BUILD_BROKEN_ENG_DEBUG_TAGS:=true
 
