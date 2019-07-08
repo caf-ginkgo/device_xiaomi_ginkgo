@@ -1,7 +1,7 @@
 ALLOW_MISSING_DEPENDENCIES=true
 # Default A/B configuration.
 ENABLE_AB ?= true
-
+BOARD_DYNAMIC_PARTITION_ENABLE ?= true
 # For QSSI builds, we skip building the system image. Instead we build the
 # "non-system" images (that we support).
 PRODUCT_BUILD_SYSTEM_IMAGE := false
@@ -25,11 +25,26 @@ TARGET_SKIP_OTA_PACKAGE := true
 # Enable AVB 2.0
 BOARD_AVB_ENABLE := true
 
+ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
 # Enable chain partition for system, to facilitate system-only OTA in Treble.
 BOARD_AVB_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_SYSTEM_ROLLBACK_INDEX := 0
 BOARD_AVB_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
+else
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_PACKAGES += fastbootd
+ifeq ($(ENABLE_AB), true)
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab_AB_dynamic_partition.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
+else
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab_non_AB_dynamic_partition.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
+endif
+BOARD_AVB_VBMETA_SYSTEM := system
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
+endif
 
 #target name, shall be used in all makefiles
 TRINKET = trinket
