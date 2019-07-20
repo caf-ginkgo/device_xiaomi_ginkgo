@@ -42,8 +42,6 @@ on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-    start vendor.qseecomd
-    start keymaster-4-0
 
 on early-fs
     start vold
@@ -108,7 +106,6 @@ on boot
 # access permissions for FPC service
     chown system system /sys/bus/platform/devices/soc/soc:fpc1020/irq
     chown system system /sys/bus/platform/devices/soc/soc:fpc1020/wakeup_enable
-    chmod 0666 /dev/qseecom
 
 #Load WLAN driver
     insmod /vendor/lib/modules/qca_cld3_wlan.ko
@@ -177,11 +174,6 @@ on property:vendor.display.lcd_density=160
 #
 #on property:persist.usb.chgdisabled=0
 #    write /sys/class/power_supply/battery/charging_enabled 1
-
-service vendor.qseecomd /vendor/bin/qseecomd
-    class core
-    user root
-    group root
 
 service spdaemon /vendor/bin/spdaemon
     class core
