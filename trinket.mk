@@ -66,6 +66,9 @@ BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 endif
 
+#privapp-permissions whitelisting
+PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=enforce
+
 #target name, shall be used in all makefiles
 TRINKET = trinket
 TARGET_DEFINES_DALVIK_HEAP := true
