@@ -72,7 +72,6 @@ service sec_nvm /vendor/bin/sec_nvm
 
 on post-fs-data
     mkdir /data/vendor/hbtp 0750 system system
-    mkdir /data/vendor/tloc 0700 system drmrpc
     mkdir /persist/qti_fp 0700 system system
     mkdir /data/vendor/nnhal 0700 system system
 
@@ -451,8 +450,3 @@ service smcinvoked /system/bin/smcinvoked
     class main
     user system
     group system
-
-service vendor.tlocd /vendor/bin/tloc_daemon
-    class late_start
-    user system
-    group drmrpc gps net_raw
