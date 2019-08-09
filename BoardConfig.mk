@@ -135,6 +135,12 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x06000000
 endif
 ### Dynamic partition Handling
 
+ifeq ($(SHIPPING_API_LEVEL),29)
+BOARD_SYSTEMSDK_VERSIONS:=29
+else
+BOARD_SYSTEMSDK_VERSIONS:=28
+endif
+
 #Enable split vendor image
 ENABLE_VENDOR_IMAGE := true
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -276,9 +282,6 @@ ifeq ($(strip $(BOARD_HAS_QCOM_WLAN)),true)
 include device/qcom/wlan/trinket/BoardConfigWlan.mk
 endif
 
-#Flag to enable System SDK Requirements.
-#All vendor APK will be compiled against system_current API set.
-BOARD_SYSTEMSDK_VERSIONS:=28
 BOARD_VNDK_VERSION:= current
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_PHONY_TARGETS := true

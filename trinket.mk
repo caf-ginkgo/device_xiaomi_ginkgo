@@ -1,7 +1,34 @@
 ALLOW_MISSING_DEPENDENCIES=true
 # Default A/B configuration.
 ENABLE_AB ?= true
-BOARD_DYNAMIC_PARTITION_ENABLE ?= true
+SHIPPING_API_LEVEL ?= true
+# Enable Dynamic partitions only for Q new launch devices.
+ifeq ($(SHIPPING_API_LEVEL),29)
+  BOARD_DYNAMIC_PARTITION_ENABLE := true
+  PRODUCT_SHIPPING_API_LEVEL := 29
+  # f2fs utilities
+  PRODUCT_PACKAGES += \
+   sg_write_buffer \
+   f2fs_io \
+   check_f2fs
+
+  # Userdata checkpoint
+  PRODUCT_PACKAGES += \
+   checkpoint_gc
+
+  ifeq ($(ENABLE_AB), true)
+    AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_vendor=true \
+    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
+    FILESYSTEM_TYPE_vendor=ext4 \
+    POSTINSTALL_OPTIONAL_vendor=true
+  endif
+else ifeq ($(SHIPPING_API_LEVEL),28)
+  BOARD_DYNAMIC_PARTITION_ENABLE := false
+  $(call inherit-product, build/make/target/product/product_launched_with_p.mk)
+endif
+
+
 # For QSSI builds, we skip building the system image. Instead we build the
 # "non-system" images (that we support).
 PRODUCT_BUILD_SYSTEM_IMAGE := false
@@ -24,26 +51,6 @@ TARGET_SKIP_OTA_PACKAGE := true
 
 # Enable AVB 2.0
 BOARD_AVB_ENABLE := true
-
-
- # f2fs utilities
- PRODUCT_PACKAGES += \
-     sg_write_buffer \
-     f2fs_io \
-     check_f2fs
-
- # Userdata checkpoint
- PRODUCT_PACKAGES += \
-     checkpoint_gc
-
- ifeq ($(ENABLE_AB), true)
-  AB_OTA_POSTINSTALL_CONFIG += \
-      RUN_POSTINSTALL_vendor=true \
-      POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
-      FILESYSTEM_TYPE_vendor=ext4 \
-      POSTINSTALL_OPTIONAL_vendor=true
- endif
-
 
 ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
 # Enable chain partition for system, to facilitate system-only OTA in Treble.
@@ -335,7 +342,6 @@ PRODUCT_PACKAGES += android.hardware.thermal@1.0-impl \
 PRODUCT_PACKAGES += cameraconfig.txt
 
 TARGET_USES_MKE2FS := true
-$(call inherit-product, build/make/target/product/product_launched_with_p.mk)
 
 #Property to enable memperfd
 PRODUCT_PROPERTY_OVERRIDES += \
