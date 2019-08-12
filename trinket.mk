@@ -1,7 +1,7 @@
 ALLOW_MISSING_DEPENDENCIES=true
 # Default A/B configuration.
 ENABLE_AB ?= true
-SHIPPING_API_LEVEL ?= true
+SHIPPING_API_LEVEL ?= 29
 # Enable Dynamic partitions only for Q new launch devices.
 ifeq ($(SHIPPING_API_LEVEL),29)
   BOARD_DYNAMIC_PARTITION_ENABLE := true
