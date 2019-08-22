@@ -148,7 +148,6 @@ on property:sys.shutdown.requested=*
     stop vendor.per_proxy
 
 on charger
-    start vendor.hvdcp_opti
     setprop vendor.usb.controller 4e00000.dwc3
     setprop sys.usb.configfs 1
 
@@ -440,11 +439,6 @@ service energy-awareness /system/vendor/bin/energy-awareness
     user system
     group system
     oneshot
-
-service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
-    class main
-    user root
-    group system wakelock
 
 service smcinvoked /system/bin/smcinvoked
     class main
