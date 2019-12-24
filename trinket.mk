@@ -250,8 +250,8 @@ PRODUCT_COPY_FILES += \
 
 #servicetracker HAL
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.servicetracker@1.0-impl \
-    vendor.qti.hardware.servicetracker@1.0-service \
+    vendor.qti.hardware.servicetracker@1.1-impl \
+    vendor.qti.hardware.servicetracker@1.1-service \
 
 # USB default HAL
 PRODUCT_PACKAGES += \
