@@ -417,6 +417,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 CAM_BRINGUP_NEW_SP := true
 
+# Target specific Netflix custom property
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.netflix.bsp_rev=Q6125-17995-1
+
 # Ginkgo Blobs
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/blobs/vendor/,$(TARGET_COPY_OUT_VENDOR))
