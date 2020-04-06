@@ -39,4 +39,10 @@
     <!-- Multi user switch has some intrinsic padding to it -->
     <dimen name="multi_user_switch_keyguard_margin">25px</dimen>
     <dimen name="keyguard_carrier_text_margin">55px</dimen>
+
+    <!-- Doze: check proximity sensor before pulsing? -->
+    <bool name="doze_proximity_check_before_pulse">false</bool>
+
+    <!-- Whether usage of the proximity sensor during doze is supported -->
+    <bool name="doze_proximity_sensor_supported">false</bool>
 </resources>
