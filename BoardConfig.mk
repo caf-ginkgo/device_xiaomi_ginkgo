@@ -31,9 +31,6 @@ BOARD_PRESIL_BUILD := true
 -include vendor/qcom/prebuilt/$(TRINKET)/BoardConfigVendor.mk
 -include $(QCPATH)/common/$(TRINKET)/BoardConfigVendor.mk
 
-#Disable camera temporarily
-USE_CAMERA_STUB := true
-
 # Some framework code requires this to enable BT
 BOARD_HAVE_BLUETOOTH := false
 BOARD_USES_WIPOWER := true
