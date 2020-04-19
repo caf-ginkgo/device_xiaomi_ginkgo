@@ -83,13 +83,21 @@ ifeq ($(ENABLE_AB), true)
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
         TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_variant.fstab
     else
-        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition.fstab
+        ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
+            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition.fstab
+        else
+            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition_noSysext.fstab
+        endif
     endif
 else
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
         TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_variant.fstab
     else
-        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition.fstab
+        ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
+            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition.fstab
+        else
+            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition_noSysext.fstab
+        endif
     endif
 endif
 
