@@ -317,6 +317,8 @@ endif
 # Enable vndk-sp Librarie
 PRODUCT_PACKAGES += vndk_package
 
+PRODUCT_PACKAGES += init.qti.dcvs.sh
+
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE:=true
 TARGET_MOUNT_POINTS_SYMLINKS := false
 
