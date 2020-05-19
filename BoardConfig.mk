@@ -83,13 +83,21 @@ ifeq ($(ENABLE_AB), true)
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
         TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_variant.fstab
     else
-        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition.fstab
+        ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
+            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition.fstab
+        else
+            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition_noSysext.fstab
+        endif
     endif
 else
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
         TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_variant.fstab
     else
-        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition.fstab
+        ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
+            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition.fstab
+        else
+            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition_noSysext.fstab
+        endif
     endif
 endif
 
@@ -288,6 +296,7 @@ BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
 
 BUILD_BROKEN_NINJA_USES_ENV_VARS := SDCLANG_AE_CONFIG SDCLANG_CONFIG SDCLANG_SA_ENABLED SDCLANG_CONFIG_AOSP
 BUILD_BROKEN_NINJA_USES_ENV_VARS += TEMPORARY_DISABLE_PATH_RESTRICTIONS
+BUILD_BROKEN_NINJA_USES_ENV_VARS += RTIC_MPGEN
 
 #################################################################################
 # This is the End of BoardConfig.mk file.

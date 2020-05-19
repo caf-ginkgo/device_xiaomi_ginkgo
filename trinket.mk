@@ -6,6 +6,10 @@ SHIPPING_API_LEVEL ?= 29
 ifeq ($(SHIPPING_API_LEVEL),29)
   BOARD_DYNAMIC_PARTITION_ENABLE := true
   PRODUCT_SHIPPING_API_LEVEL := 29
+
+# Set SYSTEMEXT_SEPARATE_PARTITION_ENABLE if was not already set (set earlier via build.sh).
+SYSTEMEXT_SEPARATE_PARTITION_ENABLE ?= false
+
   # f2fs utilities
   PRODUCT_PACKAGES += \
    sg_write_buffer \
@@ -62,9 +66,17 @@ else
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_PACKAGES += fastbootd
 ifeq ($(ENABLE_AB), true)
+ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab_AB_dynamic_partition.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
 else
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab_AB_dynamic_partition_noSysext.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
+endif
+else
+ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab_non_AB_dynamic_partition.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
+else
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/fstab_non_AB_dynamic_partition_noSysext.qti:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
+endif
 endif
 BOARD_AVB_VBMETA_SYSTEM := system
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
@@ -256,18 +268,6 @@ PRODUCT_PACKAGES += \
 #Property to enable/disable PASR
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.power.pasr.enabled=true
-
-# Sensor conf files
-PRODUCT_COPY_FILES += \
-    device/qcom/$(TRINKET)/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.compass.xml \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.barometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepcounter.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml
 
 # Kernel modules install path
 KERNEL_MODULES_INSTALL := dlkm
