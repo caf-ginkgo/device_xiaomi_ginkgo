@@ -327,9 +327,6 @@ ro.crypto.volume.filenames_mode = "aes-256-cts" \
 ro.crypto.allow_encrypt_override = true
 
 ENABLE_VENDOR_RIL_SERVICE := true
-#Thermal
-PRODUCT_PACKAGES += android.hardware.thermal@1.0-impl \
-                    android.hardware.thermal@1.0-service
 
 PRODUCT_PACKAGES += cameraconfig.txt
 
