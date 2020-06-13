@@ -232,6 +232,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.add_power_save=1
 
+# Zygote
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.device_config.runtime_native.usap_pool_enabled=true
+
 # SF
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.renderer=skiavk \
