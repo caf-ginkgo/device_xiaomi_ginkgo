@@ -209,7 +209,6 @@ BOARD_VENDOR_KERNEL_MODULES := \
 BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
 BOARD_VENDOR_KERNEL_MODULES += $(shell ls $(KERNEL_MODULES_OUT)/*.ko)
 
-TARGET_USES_IOPHAL := true
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
 TARGET_USES_QCOM_BSP := false
@@ -267,12 +266,6 @@ USE_SENSOR_MULTI_HAL := true
 
 #Add non-hlos files to ota packages
 ADD_RADIO_FILES := true
-
-#Enable LM
-TARGET_USES_LM := true
-
-#Enable PreKill
-TARGET_ENABLE_PREKILL := true
 
 # Enable QG user space
 PMIC_QG_SUPPORT := true
