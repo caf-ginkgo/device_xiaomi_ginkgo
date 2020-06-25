@@ -21,6 +21,8 @@ TARGET_2ND_CPU_VARIANT := cortex-a73
 
 BOARD_SECCOMP_POLICY := device/qcom/$(TARGET_BOARD_PLATFORM)/seccomp
 
+SYSTEMEXT_SEPARATE_PARTITION_ENABLE = true
+
 #Generate DTBO image
 BOARD_KERNEL_SEPARATED_DTBO := true
 
@@ -204,9 +206,9 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/mpq-adapter.ko \
     $(KERNEL_MODULES_OUT)/mpq-dmx-hw-plugin.ko
 
+BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
 BOARD_VENDOR_KERNEL_MODULES += $(shell ls $(KERNEL_MODULES_OUT)/*.ko)
 
-TARGET_USES_IOPHAL := true
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
 TARGET_USES_QCOM_BSP := false
@@ -265,12 +267,6 @@ USE_SENSOR_MULTI_HAL := true
 #Add non-hlos files to ota packages
 ADD_RADIO_FILES := true
 
-#Enable LM
-TARGET_USES_LM := true
-
-#Enable PreKill
-TARGET_ENABLE_PREKILL := true
-
 # Enable QG user space
 PMIC_QG_SUPPORT := true
 
@@ -306,4 +302,4 @@ BUILD_BROKEN_NINJA_USES_ENV_VARS += RTIC_MPGEN
 -include vendor/qcom/defs/board-defs/system/*.mk
 -include vendor/qcom/defs/board-defs/vendor/*.mk
 #################################################################################
-include device/qcom/sepolicy/SEPolicy.mk
+include device/qcom/sepolicy_vndr/SEPolicy.mk

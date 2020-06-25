@@ -8,7 +8,7 @@ ifeq ($(SHIPPING_API_LEVEL),29)
   PRODUCT_SHIPPING_API_LEVEL := 29
 
 # Set SYSTEMEXT_SEPARATE_PARTITION_ENABLE if was not already set (set earlier via build.sh).
-SYSTEMEXT_SEPARATE_PARTITION_ENABLE ?= false
+SYSTEMEXT_SEPARATE_PARTITION_ENABLE = true
 
   # f2fs utilities
   PRODUCT_PACKAGES += \
@@ -317,6 +317,8 @@ endif
 # Enable vndk-sp Librarie
 PRODUCT_PACKAGES += vndk_package
 
+PRODUCT_PACKAGES += init.qti.dcvs.sh
+
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE:=true
 TARGET_MOUNT_POINTS_SYMLINKS := false
 
@@ -325,9 +327,6 @@ ro.crypto.volume.filenames_mode = "aes-256-cts" \
 ro.crypto.allow_encrypt_override = true
 
 ENABLE_VENDOR_RIL_SERVICE := true
-#Thermal
-PRODUCT_PACKAGES += android.hardware.thermal@1.0-impl \
-                    android.hardware.thermal@1.0-service
 
 PRODUCT_PACKAGES += cameraconfig.txt
 
