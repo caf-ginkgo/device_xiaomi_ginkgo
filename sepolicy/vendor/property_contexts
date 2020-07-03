@@ -28,3 +28,6 @@ ro.netflix.bsp_rev          u:object_r:vendor_netflix_prop:s0
 
 # Dirac
 persist.audio.dirac.                u:object_r:dirac_prop:s0
+
+# Bluetooth
+persist.vendor.bt.a2dp.aac_whitelist u:object_r:vendor_bluetooth_prop:s0

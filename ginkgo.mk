@@ -203,6 +203,10 @@ PRODUCT_PACKAGES += android.hardware.media.omx@1.0-impl
 PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.2-impl
 
+# Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.bt.a2dp.aac_whitelist=false
+
 PRODUCT_PACKAGES += fs_config_files
 
 ifeq ($(ENABLE_AB), true)
