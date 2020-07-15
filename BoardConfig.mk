@@ -21,8 +21,6 @@ TARGET_2ND_CPU_VARIANT := cortex-a73
 
 BOARD_SECCOMP_POLICY := device/qcom/$(TARGET_BOARD_PLATFORM)/seccomp
 
-SYSTEMEXT_SEPARATE_PARTITION_ENABLE = true
-
 #Generate DTBO image
 BOARD_KERNEL_SEPARATED_DTBO := true
 
@@ -85,21 +83,13 @@ ifeq ($(ENABLE_AB), true)
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
         TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_variant.fstab
     else
-        ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
-            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition.fstab
-        else
-            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition_noSysext.fstab
-        endif
+        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition.fstab
     endif
 else
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
         TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_variant.fstab
     else
-        ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
-            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition.fstab
-        else
-            TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition_noSysext.fstab
-        endif
+        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition.fstab
     endif
 endif
 
