@@ -1,6 +1,12 @@
 ALLOW_MISSING_DEPENDENCIES=true
 # Default A/B configuration.
 ENABLE_AB ?= true
+# Enable virtual-ab by default
+ENABLE_VIRTUAL_AB := true
+
+ifeq ($(ENABLE_VIRTUAL_AB), true)
+    $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+endif
 SHIPPING_API_LEVEL ?= 29
 # Enable Dynamic partitions only for Q new launch devices.
 ifeq ($(SHIPPING_API_LEVEL),29)
@@ -83,6 +89,7 @@ BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
+$(call inherit-product, build/make/target/product/gsi_keys.mk)
 endif
 
 #privapp-permissions whitelisting
@@ -182,9 +189,9 @@ ifeq ($(ENABLE_AB), true)
 PRODUCT_PACKAGES += update_engine \
     update_engine_client \
     update_verifier \
-    bootctrl.$(TRINKET) \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+    android.hardware.boot@1.1-impl-qti \
+    android.hardware.boot@1.1-impl-qti.recovery \
+    android.hardware.boot@1.1-service
 
 #Boot control HAL test app
 PRODUCT_PACKAGES_DEBUG += bootctl
@@ -194,9 +201,6 @@ PRODUCT_PACKAGES += \
 endif
 
 DEVICE_MANIFEST_FILE := device/qcom/$(TRINKET)/manifest.xml
-ifeq ($(ENABLE_AB), true)
-DEVICE_MANIFEST_FILE += device/qcom/$(TRINKET)/manifest_ab.xml
-endif
 DEVICE_MATRIX_FILE := device/qcom/common/compatibility_matrix.xml
 DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/$(TRINKET)/framework_manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
@@ -249,11 +253,6 @@ PRODUCT_PACKAGES += \
 # MIDI feature
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.midi.xml
-
-#servicetracker HAL
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.servicetracker@1.1-impl \
-    vendor.qti.hardware.servicetracker@1.1-service \
 
 # USB default HAL
 PRODUCT_PACKAGES += \
