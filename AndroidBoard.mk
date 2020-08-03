@@ -18,6 +18,10 @@ endif
 #----------------------------------------------------------------------
 # Compile Linux Kernel
 #----------------------------------------------------------------------
+ifeq ($(TARGET_BUILD_VARIANT),user)
+    KERNEL_DEFCONFIG := vendor/trinket-perf_defconfig
+endif
+
 ifeq ($(KERNEL_DEFCONFIG),)
     ifeq ($(TARGET_BUILD_VARIANT),user)
         KERNEL_DEFCONFIG := vendor/trinket-perf_defconfig
