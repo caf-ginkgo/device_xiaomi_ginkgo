@@ -211,7 +211,6 @@ PRODUCT_PACKAGES += \
     libvolumelistener
 
 PRODUCT_PACKAGES += \
-    android.hardware.configstore@1.0-service \
     android.hardware.broadcastradio@1.0-impl
 
 PRODUCT_HOST_PACKAGES += \
@@ -325,6 +324,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.debug.enable.memperfd = true
 
 CAM_BRINGUP_NEW_SP := true
+
+#Enable Light AIDL HAL
+PRODUCT_PACKAGES += android.hardware.lights-service.qti
 
 ###################################################################################
 # This is the End of target.mk file.

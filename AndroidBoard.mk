@@ -18,6 +18,10 @@ endif
 #----------------------------------------------------------------------
 # Compile Linux Kernel
 #----------------------------------------------------------------------
+ifeq ($(TARGET_BUILD_VARIANT),user)
+    KERNEL_DEFCONFIG := vendor/trinket-perf_defconfig
+endif
+
 ifeq ($(KERNEL_DEFCONFIG),)
     ifeq ($(TARGET_BUILD_VARIANT),user)
         KERNEL_DEFCONFIG := vendor/trinket-perf_defconfig
@@ -33,6 +37,14 @@ endif
 DTC := $(HOST_OUT_EXECUTABLES)/dtc$(HOST_EXECUTABLE_SUFFIX)
 UFDT_APPLY_OVERLAY := $(HOST_OUT_EXECUTABLES)/ufdt_apply_overlay$(HOST_EXECUTABLE_SUFFIX)
 TEMP_TOP=$(shell pwd)
+TARGET_KERNEL_MAKE_ARGS := DTC_EXT=$(TEMP_TOP)/$(DTC)
+TARGET_KERNEL_MAKE_ARGS += DTC_OVERLAY_TEST_EXT=$(TEMP_TOP)/$(UFDT_APPLY_OVERLAY)
+TARGET_KERNEL_MAKE_ARGS += CONFIG_BUILD_ARM64_DT_OVERLAY=y
+TARGET_KERNEL_MAKE_ARGS += HOSTCC=$(TEMP_TOP)/$(SOONG_LLVM_PREBUILTS_PATH)/clang
+TARGET_KERNEL_MAKE_ARGS += HOSTAR=$(TEMP_TOP)/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ar
+TARGET_KERNEL_MAKE_ARGS += HOSTLD=$(TEMP_TOP)/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld
+TARGET_KERNEL_DISABLE_DEBUGFS := true
+
 TARGET_KERNEL_MAKE_ENV := DTC_EXT=$(TEMP_TOP)/$(DTC)
 TARGET_KERNEL_MAKE_ENV += DTC_OVERLAY_TEST_EXT=$(TEMP_TOP)/$(UFDT_APPLY_OVERLAY)
 TARGET_KERNEL_MAKE_ENV += CONFIG_BUILD_ARM64_DT_OVERLAY=y

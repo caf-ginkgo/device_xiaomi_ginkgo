@@ -141,24 +141,9 @@ persist.radio.atfwd.start=false
 ro.kernel.qemu.gles=0
 qemu.hw.mainkeys=0
 
-#Increase cached app limit
-ro.vendor.qti.sys.fw.bg_apps_limit=60
-
 #Expose aux camera for below packages
 vendor.camera.aux.packagelist=org.codeaurora.snapcam
 
 #Whitelisting the below packages
 persist.vendor.camera.privapp.list=org.codeaurora.snapcam
 persist.camera.privapp.list=org.codeaurora.snapcam
-
-#Enable ZRAM
-ro.vendor.qti.config.zram=true
-
-#IOP properties
-vendor.iop.enable_uxe=1
-
-#Property to enable perf boosts from System Server
-vendor.perf.gestureflingboost.enable=true
-
-#Property to enable WorkloadClassifier
-vendor.perf.workloadclassifier.enable=true
