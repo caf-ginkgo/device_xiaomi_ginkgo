@@ -313,6 +313,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ro.crypto.volume.filenames_mode = "aes-256-cts" \
 ro.crypto.allow_encrypt_override = true
 
+# Enable incremental FS feature
+PRODUCT_PROPERTY_OVERRIDES += ro.incremental.enable=1
+
 ENABLE_VENDOR_RIL_SERVICE := true
 
 PRODUCT_PACKAGES += cameraconfig.txt
