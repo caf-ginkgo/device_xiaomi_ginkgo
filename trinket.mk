@@ -7,11 +7,11 @@ ENABLE_VIRTUAL_AB := true
 ifeq ($(ENABLE_VIRTUAL_AB), true)
     $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 endif
-SHIPPING_API_LEVEL ?= 29
+SHIPPING_API_LEVEL := 30
 # Enable Dynamic partitions only for Q new launch devices.
-ifeq ($(SHIPPING_API_LEVEL),29)
+ifeq (true,$(call math_gt_or_eq,$(SHIPPING_API_LEVEL),29))
   BOARD_DYNAMIC_PARTITION_ENABLE := true
-  PRODUCT_SHIPPING_API_LEVEL := 29
+  PRODUCT_SHIPPING_API_LEVEL := $(SHIPPING_API_LEVEL)
 
   # f2fs utilities
   PRODUCT_PACKAGES += \
