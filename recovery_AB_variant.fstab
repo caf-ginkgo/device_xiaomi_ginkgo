@@ -31,7 +31,7 @@
 
 /dev/block/bootdevice/by-name/system       /               ext4    ro,barrier=1                                                    wait,slotselect,avb
 /dev/block/bootdevice/by-name/vendor       /vendor         ext4    ro,barrier=1                                                    wait,slotselect,avb
-/dev/block/bootdevice/by-name/metadata     /metadata       ext4    noatime,nosuid,nodev,discard                                    wait,formattable,wrappedkey
+/dev/block/bootdevice/by-name/metadata     /metadata       ext4    noatime,nosuid,nodev,discard                                    wait,check,formattable,wrappedkey
 /dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard                                    wait,check,encryptable=footer
 /dev/block/mmcblk1p1                       /sdcard         vfat    nosuid,nodev                                                    wait
 /dev/block/bootdevice/by-name/boot         /boot           emmc    defaults                                                        defaults
