@@ -24,10 +24,10 @@ BOARD_SECCOMP_POLICY := device/qcom/$(TARGET_BOARD_PLATFORM)/seccomp
 #Generate DTBO image
 BOARD_KERNEL_SEPARATED_DTBO := true
 
-TARGET_NO_BOOTLOADER := false
-TARGET_USES_UEFI := true
+TARGET_NO_BOOTLOADER := true
+TARGET_USES_UEFI := false
 TARGET_NO_KERNEL := false
-BOARD_PRESIL_BUILD := true
+BOARD_PRESIL_BUILD := false
 -include vendor/qcom/prebuilt/$(TRINKET)/BoardConfigVendor.mk
 -include $(QCPATH)/common/$(TRINKET)/BoardConfigVendor.mk
 
@@ -37,10 +37,9 @@ BOARD_USES_WIPOWER := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/qcom/common
 
 USE_OPENGL_RENDERER := true
-BOARD_USE_LEGACY_UI := true
 
-#Disable appended dtb
-TARGET_KERNEL_APPEND_DTB := false
+#Enable appended dtb
+TARGET_KERNEL_APPEND_DTB := true
 
 # Set Header version for bootimage
 ifneq ($(strip $(TARGET_KERNEL_APPEND_DTB)),true)
@@ -77,7 +76,7 @@ endif
 BOARD_INCLUDE_RECOVERY_DTBO := true
 endif
 
-BOARD_USES_METADATA_PARTITION := true
+BOARD_USES_METADATA_PARTITION := false
 
 ifeq ($(ENABLE_AB), true)
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
@@ -142,21 +141,18 @@ BOARD_SYSTEMSDK_VERSIONS := $(SHIPPING_API_LEVEL)
 #Enable split vendor image
 ENABLE_VENDOR_IMAGE := true
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_PARTITION_SIZE := 1610612736
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4831838208
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x04000000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 10737418240
-BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
-BOARD_DTBOIMG_PARTITION_SIZE := 0x0800000
-BOARD_METADATAIMAGE_PARTITION_SIZE := 16777216
-BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+BOARD_DTBOIMG_PARTITION_SIZE := 25165824
+BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 
 TARGET_KERNEL_VERSION := 4.14
-BOARD_PREBUILT_DTBOIMAGE := out/target/product/sm6150/prebuilt_dtbo.img
 BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_apr.ko \
     $(KERNEL_MODULES_OUT)/audio_snd_event.ko \
@@ -188,6 +184,7 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_wcd_cpe.ko \
     $(KERNEL_MODULES_OUT)/audio_cpe_lsm.ko \
     $(KERNEL_MODULES_OUT)/audio_wcd9335.ko \
+    $(KERNEL_MODULES_OUT)/audio_max98937.ko \
     $(KERNEL_MODULES_OUT)/audio_native.ko \
     $(KERNEL_MODULES_OUT)/audio_machine_trinket.ko \
     $(KERNEL_MODULES_OUT)/wil6210.ko \
@@ -200,16 +197,17 @@ BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
 BOARD_VENDOR_KERNEL_MODULES += $(shell ls $(KERNEL_MODULES_OUT)/*.ko)
 
 TARGET_USES_ION := true
-TARGET_USES_NEW_ION_API :=true
+TARGET_USES_NEW_ION_API := true
 TARGET_USES_QCOM_BSP := false
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=1 earlycon=msm_geni_serial,0x4a90000 loop.max_part=7 cgroup.memory=nokmem,nosocket
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=1 earlycon=msm_geni_serial,0x4a90000 loop.max_part=7 cgroup.memory=nokmem,nosocket androidboot.selinux=permissive
 
 BOARD_EGL_CFG := device/qcom/$(TARGET_BOARD_PLATFORM)/egl.cfg
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
-BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
-BOARD_RAMDISK_OFFSET     := 0x02000000
+BOARD_KERNEL_OFFSET      := 0x00008000
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_RAMDISK_OFFSET     := 0x01000000
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
@@ -243,10 +241,10 @@ ifeq ($(HOST_OS),linux)
     ifeq ($(WITH_DEXPREOPT),)
       WITH_DEXPREOPT := true
       WITH_DEXPREOPT_PIC := true
-      ifneq ($(TARGET_BUILD_VARIANT),user)
+      #ifneq ($(TARGET_BUILD_VARIANT),user)
         # Retain classes.dex in APK's for non-user builds
-        DEX_PREOPT_DEFAULT := nostripping
-      endif
+        #DEX_PREOPT_DEFAULT := nostripping
+      #endif
     endif
 endif
 
@@ -255,7 +253,7 @@ endif
 USE_SENSOR_MULTI_HAL := true
 
 #Add non-hlos files to ota packages
-ADD_RADIO_FILES := true
+ADD_RADIO_FILES := false
 
 # Enable QG user space
 PMIC_QG_SUPPORT := true

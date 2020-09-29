@@ -1,13 +1,13 @@
 ALLOW_MISSING_DEPENDENCIES=true
 # Default A/B configuration.
-ENABLE_AB ?= true
+ENABLE_AB := false
 # Enable virtual-ab by default
-ENABLE_VIRTUAL_AB := true
+ENABLE_VIRTUAL_AB := false
 
 ifeq ($(ENABLE_VIRTUAL_AB), true)
     $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 endif
-SHIPPING_API_LEVEL := 30
+SHIPPING_API_LEVEL := 28
 # Enable Dynamic partitions only for Q new launch devices.
 ifeq (true,$(call math_gt_or_eq,$(SHIPPING_API_LEVEL),29))
   BOARD_DYNAMIC_PARTITION_ENABLE := true
@@ -44,11 +44,7 @@ PRODUCT_BUILD_VENDOR_IMAGE := true
 PRODUCT_BUILD_PRODUCT_IMAGE := false
 PRODUCT_BUILD_SYSTEM_EXT_IMAGE := false
 PRODUCT_BUILD_ODM_IMAGE := false
-ifeq ($(ENABLE_AB), true)
 PRODUCT_BUILD_CACHE_IMAGE := false
-else
-PRODUCT_BUILD_CACHE_IMAGE := true
-endif
 PRODUCT_BUILD_RAMDISK_IMAGE := true
 PRODUCT_BUILD_USERDATA_IMAGE := true
 
@@ -84,7 +80,7 @@ $(call inherit-product, build/make/target/product/gsi_keys.mk)
 endif
 
 #privapp-permissions whitelisting
-PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=enforce
+PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=log
 
 #target name, shall be used in all makefiles
 TRINKET = trinket
@@ -170,6 +166,7 @@ AUDIO_DLKM += audio_wsa_macro.ko
 AUDIO_DLKM += audio_va_macro.ko
 AUDIO_DLKM += audio_rx_macro.ko
 AUDIO_DLKM += audio_tx_macro.ko
+AUDIO_DLKM += audio_max98937.ko
 
 PRODUCT_PACKAGES += $(AUDIO_DLKM)
 
@@ -226,7 +223,7 @@ PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/msm_irqbalance.conf:$(TARGET_COPY_O
 PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 #PowerHAL
-TARGET_USES_NON_LEGACY_POWERHAL := false
+TARGET_USES_NON_LEGACY_POWERHAL := true
 
 # Camera configuration file. Shared by passthrough/binderized camera HAL
 PRODUCT_PACKAGES += camera.device@3.2-impl

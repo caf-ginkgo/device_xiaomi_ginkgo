@@ -18,21 +18,8 @@ endif
 #----------------------------------------------------------------------
 # Compile Linux Kernel
 #----------------------------------------------------------------------
-ifeq ($(TARGET_BUILD_VARIANT),user)
-    KERNEL_DEFCONFIG := vendor/trinket-perf_defconfig
-endif
-
-ifeq ($(KERNEL_DEFCONFIG),)
-    ifeq ($(TARGET_BUILD_VARIANT),user)
-        KERNEL_DEFCONFIG := vendor/trinket-perf_defconfig
-    else
-        KERNEL_DEFCONFIG := vendor/trinket_defconfig
-    endif
-endif
-
-ifeq ($(TARGET_KERNEL_SOURCE),)
-     TARGET_KERNEL_SOURCE := kernel
-endif
+KERNEL_DEFCONFIG := vendor/ginkgo-perf_defconfig
+TARGET_KERNEL_SOURCE := kernel/msm-4.14
 
 DTC := $(HOST_OUT_EXECUTABLES)/dtc$(HOST_EXECUTABLE_SUFFIX)
 UFDT_APPLY_OVERLAY := $(HOST_OUT_EXECUTABLES)/ufdt_apply_overlay$(HOST_EXECUTABLE_SUFFIX)
