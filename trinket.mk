@@ -223,6 +223,10 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.enableadvancedscan=true
 
+# Radio power saving
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.radio.add_power_save=1
+
 #Healthd packages
 PRODUCT_PACKAGES += \
     libhealthd.msm
