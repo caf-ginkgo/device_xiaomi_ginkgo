@@ -44,8 +44,7 @@ PRODUCT_BUILD_VENDOR_IMAGE := true
 PRODUCT_BUILD_PRODUCT_IMAGE := false
 PRODUCT_BUILD_SYSTEM_EXT_IMAGE := false
 PRODUCT_BUILD_ODM_IMAGE := false
-PRODUCT_BUILD_CACHE_IMAGE := false
-PRODUCT_BUILD_RAMDISK_IMAGE := true
+PRODUCT_BUILD_CACHE_IMAGE := true
 PRODUCT_BUILD_USERDATA_IMAGE := true
 
 # Also, since we're going to skip building the system image, we also skip
