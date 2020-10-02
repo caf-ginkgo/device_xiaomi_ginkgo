@@ -325,6 +325,10 @@ CAM_BRINGUP_NEW_SP := true
 #Enable Light AIDL HAL
 PRODUCT_PACKAGES += android.hardware.lights-service.qti
 
+# Ginkgo Blobs
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/blobs/vendor/,$(TARGET_COPY_OUT_VENDOR))
+
 ###################################################################################
 # This is the End of target.mk file.
 # Now, Pickup other split product.mk files:
