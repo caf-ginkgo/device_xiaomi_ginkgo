@@ -27,15 +27,13 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <resources>
+    <!-- Radius of the software rounded corners at the top of the display in its natural
+        orientation. If zero, the value of rounded_corner_radius is used. -->
+    <dimen name="rounded_corner_radius_top">106.0px</dimen>
 
-<!-- Height of the status bar -->
-<dimen name="status_bar_height_portrait">48dp</dimen>
-<dimen name="status_bar_height_landscape">28dp</dimen>
-<!-- Height of area above QQS where battery/time go (equal to status bar height if > 48dp) -->
-<dimen name="quick_qs_offset_height">48dp</dimen>
-<!-- Total height of QQS (quick_qs_offset_height + 128) -->
-<dimen name="quick_qs_total_height">176dp</dimen>
-
+    <!-- Radius of the software rounded corners at the bottom of the display in its natural
+        orientation. If zero, the value of rounded_corner_radius is used. -->
+    <dimen name="rounded_corner_radius_bottom">108.0px</dimen>
 </resources>
 
 
