@@ -40,6 +40,11 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 endif
 
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Launcher3QuickStep \
+    Settings \
+    SystemUI
+
 # For QSSI builds, we skip building the system image. Instead we build the
 # "non-system" images (that we support).
 PRODUCT_BUILD_SYSTEM_IMAGE := false
