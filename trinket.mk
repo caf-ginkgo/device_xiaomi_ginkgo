@@ -35,6 +35,10 @@ else ifeq ($(SHIPPING_API_LEVEL),28)
   $(call inherit-product, build/make/target/product/product_launched_with_p.mk)
 endif
 
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+endif
 
 # For QSSI builds, we skip building the system image. Instead we build the
 # "non-system" images (that we support).
