@@ -86,7 +86,8 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=log
 
 #target name, shall be used in all makefiles
-TRINKET = trinket
+TRINKET := trinket
+TARGET_VENDOR := xiaomi
 TARGET_DEFINES_DALVIK_HEAP := true
 $(call inherit-product, device/qcom/vendor-common/common64.mk)
 
@@ -98,10 +99,11 @@ PRODUCT_PROPERTY_OVERRIDES  += \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
 
-PRODUCT_NAME := $(TRINKET)
-PRODUCT_DEVICE := $(TRINKET)
-PRODUCT_BRAND := qti
-PRODUCT_MODEL := $(TRINKET) for arm64
+PRODUCT_NAME := ginkgo
+PRODUCT_DEVICE := ginkgo
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_MODEL := Redmi Note 8
 
 #Initial bringup flags
 TARGET_USES_AOSP := false
@@ -217,11 +219,10 @@ PRODUCT_PACKAGES += \
   update_engine_sideload
 endif
 
-DEVICE_MANIFEST_FILE := device/qcom/$(TRINKET)/manifest.xml
+DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := device/qcom/common/compatibility_matrix.xml
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/$(TRINKET)/framework_manifest.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(LOCAL_PATH)/framework_manifest.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := vendor/qcom/opensource/core-utils/vendor_framework_compatibility_matrix.xml
 
 # Telephony: Enable advanced network scanning
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -250,10 +251,10 @@ PRODUCT_HOST_PACKAGES += \
     configstore_xmlparser
 
 # MSM IRQ Balancer configuration file
-PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # Powerhint configuration file
-PRODUCT_COPY_FILES += device/qcom/$(TRINKET)/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 #PowerHAL
 TARGET_USES_NON_LEGACY_POWERHAL := true
@@ -316,7 +317,7 @@ PRODUCT_VENDOR_MOVE_ENABLED := true
 # Enable flag to support slow devices
 TARGET_PRESIL_SLOW_BOARD := true
 
-DEVICE_PACKAGE_OVERLAYS += device/qcom/trinket/overlay
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 #----------------------------------------------------------------------
 # wlan specific

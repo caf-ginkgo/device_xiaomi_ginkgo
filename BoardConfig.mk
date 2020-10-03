@@ -2,6 +2,10 @@
 #
 # Product-specific compile-time definitions.
 #
+
+DEVICE_PATH := device/xiaomi/ginkgo
+
+TARGET_VENDOR := xiaomi
 TARGET_BOARD_PLATFORM := $(TRINKET)
 TARGET_SEPOLICY_DIR := trinket
 TARGET_BOOTLOADER_BOARD_NAME := $(TRINKET)
@@ -19,7 +23,7 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
-BOARD_SECCOMP_POLICY := device/qcom/$(TARGET_BOARD_PLATFORM)/seccomp
+BOARD_SECCOMP_POLICY := $(DEVICE_PATH)/seccomp
 
 #Generate DTBO image
 BOARD_KERNEL_SEPARATED_DTBO := true
@@ -81,15 +85,15 @@ BOARD_USES_METADATA_PARTITION := false
 
 ifeq ($(ENABLE_AB), true)
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
-        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_variant.fstab
+        TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery_AB_variant.fstab
     else
-        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_AB_dynamic_partition.fstab
+        TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery_AB_dynamic_partition.fstab
     endif
 else
     ifneq ($(strip $(BOARD_DYNAMIC_PARTITION_ENABLE)),true)
-        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_variant.fstab
+        TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery_non-AB_variant.fstab
     else
-        TARGET_RECOVERY_FSTAB := device/qcom/$(TRINKET)/recovery_non-AB_dynamic_partition.fstab
+        TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery_non-AB_dynamic_partition.fstab
     endif
 endif
 
@@ -206,7 +210,7 @@ TARGET_USES_NEW_ION_API := true
 TARGET_USES_QCOM_BSP := false
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=1 earlycon=msm_geni_serial,0x4a90000 loop.max_part=7 cgroup.memory=nokmem,nosocket androidboot.selinux=permissive
 
-BOARD_EGL_CFG := device/qcom/$(TARGET_BOARD_PLATFORM)/egl.cfg
+BOARD_EGL_CFG := $(DEVICE_PATH)/egl.cfg
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096

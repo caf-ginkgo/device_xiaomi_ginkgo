@@ -1,4 +1,7 @@
 PRODUCT_MAKEFILES := \
-	$(LOCAL_DIR)/trinket.mk
+	$(LOCAL_DIR)/ginkgo.mk
+
 COMMON_LUNCH_CHOICES := \
-        trinket-userdebug
+        ginkgo-userdebug \
+        ginkgo-eng \
+        ginkgo-user
