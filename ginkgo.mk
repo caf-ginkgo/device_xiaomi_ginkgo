@@ -345,7 +345,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.depurple=1 \
     persist.vendor.camera.privapp.list=org.codeaurora.snapdragoncam \
     persist.vendor.dualcam.lpm.enable=0 \
-    vendor.camera.aux.packagelist=org.codeaurora.snapcam,org.codeaurora.snapdragoncam,com.android.camera \
+    vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera \
     vendor.camera.not.cts.apk=1 \
     vendor.camera.not.ctsverify.apk=1
 
