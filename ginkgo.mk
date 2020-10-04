@@ -253,7 +253,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.renderer=skiavk \
     debug.sf.disable_backpressure=1 \
     debug.sf.latch_unsignaled=1 \
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+    ro.sf.blurs_are_expensive=1 \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+    ro.surface_flinger.supports_background_blur=1
 
 #Healthd packages
 PRODUCT_PACKAGES += \
