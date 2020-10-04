@@ -242,6 +242,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.add_power_save=1
 
+# SF
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.renderer=skiavk \
+    debug.sf.disable_backpressure=1 \
+    debug.sf.latch_unsignaled=1 \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+
 #Healthd packages
 PRODUCT_PACKAGES += \
     libhealthd.msm
