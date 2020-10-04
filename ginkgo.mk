@@ -373,7 +373,10 @@ PRODUCT_VENDOR_MOVE_ENABLED := true
 # Enable flag to support slow devices
 TARGET_PRESIL_SLOW_BOARD := true
 
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+# Overlay
+PRODUCT_PACKAGES += \
+    FrameworksGinkgo \
+    SystemUIGinkgo
 
 #----------------------------------------------------------------------
 # wlan specific
