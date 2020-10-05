@@ -95,6 +95,10 @@ on boot
     chown system system /sys/bus/platform/devices/soc/soc:fpc1020/irq
     chown system system /sys/bus/platform/devices/soc/soc:fpc1020/wakeup_enable
 
+# DT2W
+    chown system system /sys/touchpanel/double_tap
+    chmod 0660 /sys/touchpanel/double_tap
+
 #Load WLAN driver
     insmod /vendor/lib/modules/qca_cld3_wlan.ko
 
