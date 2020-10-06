@@ -165,45 +165,6 @@ BOARD_DTBOIMG_PARTITION_SIZE := 25165824
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 
 TARGET_KERNEL_VERSION := 4.14
-BOARD_VENDOR_KERNEL_MODULES := \
-    $(KERNEL_MODULES_OUT)/audio_apr.ko \
-    $(KERNEL_MODULES_OUT)/audio_snd_event.ko \
-    $(KERNEL_MODULES_OUT)/audio_wglink.ko \
-    $(KERNEL_MODULES_OUT)/audio_q6_pdr.ko \
-    $(KERNEL_MODULES_OUT)/audio_q6_notifier.ko \
-    $(KERNEL_MODULES_OUT)/audio_adsp_loader.ko \
-    $(KERNEL_MODULES_OUT)/audio_q6.ko \
-    $(KERNEL_MODULES_OUT)/audio_usf.ko \
-    $(KERNEL_MODULES_OUT)/audio_pinctrl_wcd.ko \
-    $(KERNEL_MODULES_OUT)/audio_swr.ko \
-    $(KERNEL_MODULES_OUT)/audio_wcd_core.ko \
-    $(KERNEL_MODULES_OUT)/audio_swr_ctrl.ko \
-    $(KERNEL_MODULES_OUT)/audio_wsa881x.ko \
-    $(KERNEL_MODULES_OUT)/audio_platform.ko \
-    $(KERNEL_MODULES_OUT)/audio_hdmi.ko \
-    $(KERNEL_MODULES_OUT)/audio_stub.ko \
-    $(KERNEL_MODULES_OUT)/audio_wcd9xxx.ko \
-    $(KERNEL_MODULES_OUT)/audio_mbhc.ko \
-    $(KERNEL_MODULES_OUT)/audio_wcd934x.ko \
-    $(KERNEL_MODULES_OUT)/audio_wcd937x.ko \
-    $(KERNEL_MODULES_OUT)/audio_wcd937x_slave.ko \
-    $(KERNEL_MODULES_OUT)/audio_bolero_cdc.ko \
-    $(KERNEL_MODULES_OUT)/audio_wsa_macro.ko \
-    $(KERNEL_MODULES_OUT)/audio_va_macro.ko \
-    $(KERNEL_MODULES_OUT)/audio_rx_macro.ko \
-    $(KERNEL_MODULES_OUT)/audio_tx_macro.ko \
-    $(KERNEL_MODULES_OUT)/audio_wcd_spi.ko \
-    $(KERNEL_MODULES_OUT)/audio_wcd_cpe.ko \
-    $(KERNEL_MODULES_OUT)/audio_cpe_lsm.ko \
-    $(KERNEL_MODULES_OUT)/audio_wcd9335.ko \
-    $(KERNEL_MODULES_OUT)/audio_max98937.ko \
-    $(KERNEL_MODULES_OUT)/audio_native.ko \
-    $(KERNEL_MODULES_OUT)/audio_machine_trinket.ko \
-    $(KERNEL_MODULES_OUT)/wil6210.ko \
-    $(KERNEL_MODULES_OUT)/msm_11ad_proxy.ko \
-    $(KERNEL_MODULES_OUT)/rdbg.ko \
-    $(KERNEL_MODULES_OUT)/mpq-adapter.ko \
-    $(KERNEL_MODULES_OUT)/mpq-dmx-hw-plugin.ko
 
 BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
 BOARD_VENDOR_KERNEL_MODULES += $(shell ls $(KERNEL_MODULES_OUT)/*.ko)

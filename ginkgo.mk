@@ -187,42 +187,6 @@ PRODUCT_PACKAGES += android.hardware.media.omx@1.0-impl
 # Audio configuration file
 -include $(TOPDIR)vendor/qcom/opensource/audio-hal/primary-hal/configs/trinket/trinket.mk
 
-#Audio DLKM
-AUDIO_DLKM := audio_apr.ko
-AUDIO_DLKM += audio_wglink.ko
-AUDIO_DLKM += audio_q6_pdr.ko
-AUDIO_DLKM += audio_q6_notifier.ko
-AUDIO_DLKM += audio_adsp_loader.ko
-AUDIO_DLKM += audio_q6.ko
-AUDIO_DLKM += audio_usf.ko
-AUDIO_DLKM += audio_pinctrl_wcd.ko
-AUDIO_DLKM += audio_swr.ko
-AUDIO_DLKM += audio_wcd_core.ko
-AUDIO_DLKM += audio_swr_ctrl.ko
-AUDIO_DLKM += audio_wsa881x.ko
-AUDIO_DLKM += audio_platform.ko
-AUDIO_DLKM += audio_hdmi.ko
-AUDIO_DLKM += audio_stub.ko
-AUDIO_DLKM += audio_wcd9xxx.ko
-AUDIO_DLKM += audio_mbhc.ko
-AUDIO_DLKM += audio_wcd_spi.ko
-AUDIO_DLKM += audio_native.ko
-AUDIO_DLKM += audio_machine_trinket.ko
-AUDIO_DLKM += audio_wcd_cpe.ko
-AUDIO_DLKM += audio_cpe_lsm.ko
-AUDIO_DLKM += audio_wcd9335.ko
-AUDIO_DLKM += audio_wcd934x.ko
-AUDIO_DLKM += audio_wcd937x.ko
-AUDIO_DLKM += audio_wcd937x_slave.ko
-AUDIO_DLKM += audio_bolero_cdc.ko
-AUDIO_DLKM += audio_wsa_macro.ko
-AUDIO_DLKM += audio_va_macro.ko
-AUDIO_DLKM += audio_rx_macro.ko
-AUDIO_DLKM += audio_tx_macro.ko
-AUDIO_DLKM += audio_max98937.ko
-
-PRODUCT_PACKAGES += $(AUDIO_DLKM)
-
 PRODUCT_PACKAGES += fs_config_files
 
 ifeq ($(ENABLE_AB), true)

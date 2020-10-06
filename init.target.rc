@@ -28,7 +28,6 @@
 #
 
 on early-init
-    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules audio_wglink audio_q6_pdr audio_q6_notifier audio_apr audio_adsp_loader audio_q6 audio_native audio_usf audio_pinctrl_wcd audio_swr audio_platform audio_hdmi audio_wcd_spi audio_stub audio_wcd_core audio_wsa881x audio_hdmi audio_bolero_cdc audio_wsa_macro audio_va_macro audio_rx_macro audio_tx_macro audio_machine_trinket audio_wcd937x audio_wcd937x_slave audio_wcd9335 audio_cpe_lsm audio_wcd_cpe audio_max98937
     write /proc/sys/kernel/sched_boost 1
 
 on init
@@ -98,9 +97,6 @@ on boot
 # DT2W
     chown system system /sys/touchpanel/double_tap
     chmod 0660 /sys/touchpanel/double_tap
-
-#Load WLAN driver
-    insmod /vendor/lib/modules/qca_cld3_wlan.ko
 
 #USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
