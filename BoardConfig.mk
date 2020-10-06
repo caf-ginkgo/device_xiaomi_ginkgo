@@ -10,6 +10,7 @@ TARGET_BOARD_PLATFORM := $(TRINKET)
 TARGET_SEPOLICY_DIR := trinket
 TARGET_BOOTLOADER_BOARD_NAME := $(TRINKET)
 TARGET_PERF_DIR := trinket
+BOARD_SEPOLICY_DIRS := $(DEVICE_PATH)/sepolicy/vendor
 
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -229,9 +230,6 @@ ADD_RADIO_FILES := true
 
 # Enable QG user space
 PMIC_QG_SUPPORT := true
-
-# Sepolicy
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 ifeq ($(ENABLE_VENDOR_IMAGE), false)
 $(error "Vendor Image is mandatory !!")
