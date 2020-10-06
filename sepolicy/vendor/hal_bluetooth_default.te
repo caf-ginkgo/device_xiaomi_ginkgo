@@ -1,0 +1,2 @@
+# disable logspam
+dontaudit hal_bluetooth_default diag_device:chr_file { read write };

@@ -230,6 +230,9 @@ ADD_RADIO_FILES := true
 # Enable QG user space
 PMIC_QG_SUPPORT := true
 
+# Sepolicy
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+
 ifeq ($(ENABLE_VENDOR_IMAGE), false)
 $(error "Vendor Image is mandatory !!")
 endif

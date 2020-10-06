@@ -1,0 +1,1 @@
+genfscon sysfs /touchpanel u:object_r:sysfs_touchpanel:s0
