@@ -20,3 +20,7 @@ ro.lirc.dev                 u:object_r:lirc_prop:s0
 # Miui
 ro.miui.                    u:object_r:exported_default_prop:s0
 ro.cust.test                u:object_r:exported_default_prop:s0
+
+# SF
+ro.sf.blurs_are_expensive   u:object_r:exported3_default_prop:s0
+ro.surface_flinger.supports_background_blur u:object_r:exported_default_prop:s0

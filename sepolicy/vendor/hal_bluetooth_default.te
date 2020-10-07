@@ -1,2 +1,3 @@
 # disable logspam
-dontaudit hal_bluetooth_default vendor_diag_device:chr_file { read write };
+dontaudit hal_bluetooth_default vendor_diag_device:chr_file rw_file_perms;
+dontaudit hal_bluetooth_default vendor_ramdump_vendor_data_file:dir { open read };
