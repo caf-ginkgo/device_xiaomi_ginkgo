@@ -39,7 +39,7 @@ BOARD_PRESIL_BUILD := false
 # Some framework code requires this to enable BT
 BOARD_HAVE_BLUETOOTH := false
 BOARD_USES_WIPOWER := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/qcom/common
+#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/qcom/common
 
 USE_OPENGL_RENDERER := true
 
