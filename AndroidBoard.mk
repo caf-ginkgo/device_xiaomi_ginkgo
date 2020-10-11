@@ -45,7 +45,7 @@ KERNEL_LLVM_SUPPORT := true
 KERNEL_SD_LLVM_SUPPORT := true
 
 ifneq (, $(wildcard $(shell pwd)/prebuilts/build-tools/linux-x86/bin/make))
-    MAKE := $(shell pwd)/prebuilts/build-tools/linux-x86/bin/$(MAKE)
+    MAKE := $(shell pwd)/prebuilts/build-tools/linux-x86/bin/$(MAKE) -j$(shell nproc --all)
 endif
 
 include $(TARGET_KERNEL_SOURCE)/AndroidKernel.mk
