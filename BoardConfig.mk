@@ -211,9 +211,6 @@ TARGET_PD_SERVICE_ENABLED := true
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
-TARGET_HW_DISK_ENCRYPTION := true
-TARGET_HW_DISK_ENCRYPTION_PERF := true
-
 # Enable dex pre-opt to speed up initial boot
 ifeq ($(HOST_OS),linux)
 ifneq ($(TARGET_BUILD_VARIANT),eng)
