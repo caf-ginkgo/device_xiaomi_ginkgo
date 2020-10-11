@@ -202,6 +202,9 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 
+# Releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := device/qcom/common
+
 #Enable PD locater/notifier
 TARGET_PD_SERVICE_ENABLED := true
 
