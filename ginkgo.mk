@@ -404,9 +404,8 @@ PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE:=true
 TARGET_MOUNT_POINTS_SYMLINKS := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
-ro.crypto.volume.filenames_mode = "aes-256-cts" \
-ro.crypto.allow_encrypt_override = true \
-ro.crypto.dm_default_key.options_format.version = 2
+    ro.crypto.volume.filenames_mode=aes-256-cts \
+    ro.crypto.allow_encrypt_override=true
 
 # Enable incremental FS feature
 PRODUCT_PROPERTY_OVERRIDES += ro.incremental.enable=1
