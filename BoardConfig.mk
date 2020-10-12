@@ -79,7 +79,7 @@ ifeq ($(BOARD_AVB_ENABLE), true)
    BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
    BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
    BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
-   BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flag 2 --set_hashtree_disabled_flag
+   BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS := --flag 2 --set_hashtree_disabled_flag
 endif
 # Enable DTBO for recovery image
 BOARD_INCLUDE_RECOVERY_DTBO := true
