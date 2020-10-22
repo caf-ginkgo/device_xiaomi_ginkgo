@@ -49,6 +49,9 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
 #Enable appended dtb
 TARGET_KERNEL_APPEND_DTB := true
 
+# NFC
+TARGET_USES_NQ_NFC := true
+
 # Set Header version for bootimage
 ifneq ($(strip $(TARGET_KERNEL_APPEND_DTB)),true)
 #Enable dtb in boot image and Set Header version
