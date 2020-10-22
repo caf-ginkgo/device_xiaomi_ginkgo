@@ -148,7 +148,7 @@ endif
 BOARD_SYSTEMSDK_VERSIONS := $(SHIPPING_API_LEVEL)
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := ginkgo
+TARGET_OTA_ASSERT_DEVICE := ginkgo,willow
 
 #Enable split vendor image
 ENABLE_VENDOR_IMAGE := true
