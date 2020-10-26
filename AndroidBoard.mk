@@ -41,9 +41,6 @@ TARGET_KERNEL_MAKE_ENV += HOSTLD=$(TEMP_TOP)/prebuilts/gcc/linux-x86/host/x86_64
 #Enable llvm support for kernel
 KERNEL_LLVM_SUPPORT := true
 
-#Enable sd-llvm suppport for kernel
-KERNEL_SD_LLVM_SUPPORT := true
-
 ifneq (, $(wildcard $(shell pwd)/prebuilts/build-tools/linux-x86/bin/make))
     MAKE := $(shell pwd)/prebuilts/build-tools/linux-x86/bin/$(MAKE) -j$(shell nproc --all)
 endif
