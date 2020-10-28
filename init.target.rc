@@ -28,7 +28,7 @@
 #
 
 on early-init
-    write /proc/sys/kernel/sched_boost 1
+    write /dev/stune/top-app/schedtune.boost 50
 
 on init
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
