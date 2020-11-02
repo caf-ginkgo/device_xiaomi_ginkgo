@@ -429,3 +429,6 @@ on property:ro.product.device=willow
 on property:persist.sys.device_provisioned=1
     setprop dalvik.vm.dex2oat-cpu-set 0,1,2,3,6,7
     setprop dalvik.vm.dex2oat-threads 6
+
+on property:vendor.camera.cpuperf.en=*
+    write /dev/stune/foreground/schedtune.prefer_idle ${vendor.camera.cpuperf.en}
