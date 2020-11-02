@@ -10,7 +10,6 @@ TARGET_BOARD_PLATFORM := $(TRINKET)
 TARGET_SEPOLICY_DIR := trinket
 TARGET_BOOTLOADER_BOARD_NAME := $(TRINKET)
 TARGET_PERF_DIR := trinket
-BOARD_SEPOLICY_DIRS := $(DEVICE_PATH)/sepolicy/vendor
 
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -25,6 +24,11 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a73
 
 BOARD_SECCOMP_POLICY := $(DEVICE_PATH)/seccomp
+
+BOARD_SEPOLICY_DIRS := \
+    $(DEVICE_PATH)/sepolicy/vendor \
+    hardware/google/pixel-sepolicy/flipendo \
+    hardware/google/pixel-sepolicy/turbo_adapter
 
 #Generate DTBO image
 BOARD_KERNEL_SEPARATED_DTBO := true
