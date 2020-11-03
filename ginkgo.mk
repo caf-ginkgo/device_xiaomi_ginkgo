@@ -339,7 +339,6 @@ PRODUCT_PACKAGES += android.hardware.camera.provider@2.4-service
 
 # Camera properties
 PRODUCT_PROPERTY_OVERRIDES += \
-    camera.disable_zsl_mode=true \
     persist.vendor.camera.preview.ubwc=0 \
     persist.vendor.camera.isp.clock.optmz=0 \
     persist.vendor.camera.isp.turbo=1 \
@@ -364,10 +363,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.aec.sync=1 \
     persist.vendor.camera.instant.aec=1 \
     persist.vendor.camera.ae.instant.bound=20 \
-    persist.vendor.camera.depurple=1 \
     persist.vendor.camera.privapp.list=org.codeaurora.snapdragoncam \
     persist.vendor.dualcam.lpm.enable=0 \
     vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,com.android.GoogleCameraTigr \
+    vendor.camera.hal1.packagelist=com.whatsapp,com.instagram.android,com.facebook.katana,com.snapchat.android \
     vendor.camera.not.cts.apk=1 \
     vendor.camera.not.ctsverify.apk=1
 
