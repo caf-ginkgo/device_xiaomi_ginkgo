@@ -28,7 +28,8 @@
 #
 
 on early-init
-    write /dev/stune/top-app/schedtune.boost 50
+    write /dev/stune/schedtune.boost 50
+    write /dev/stune/schedtune.prefer_idle 1
 
 on init
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
@@ -432,3 +433,7 @@ on property:persist.sys.device_provisioned=1
 
 on property:vendor.camera.cpuperf.en=*
     write /dev/stune/foreground/schedtune.prefer_idle ${vendor.camera.cpuperf.en}
+
+on property:sys.boot_completed=1
+    write /dev/stune/schedtune.prefer_idle 0
+    write /dev/stune/schedtune.boost 0
