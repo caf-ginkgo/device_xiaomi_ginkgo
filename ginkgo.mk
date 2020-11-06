@@ -366,7 +366,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.privapp.list=org.codeaurora.snapdragoncam \
     persist.vendor.dualcam.lpm.enable=0 \
     vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,com.android.GoogleCameraTigr \
-    vendor.camera.hal1.packagelist=com.whatsapp,com.instagram.android,com.facebook.katana,com.snapchat.android \
+    vendor.camera.hal1.packagelist=com.instagram.android,com.facebook.katana,com.snapchat.android \
     vendor.camera.not.cts.apk=1 \
     vendor.camera.not.ctsverify.apk=1
 
