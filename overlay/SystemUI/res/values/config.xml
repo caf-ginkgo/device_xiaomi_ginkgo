@@ -28,8 +28,8 @@
     IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 -->
 <resources>
-    <!-- for 18dp of padding at 2.75px/dp at default density -->
-    <dimen name="rounded_corner_content_padding">50px</dimen>
+    <!-- for 13dp of padding at 2.75px/dp at default density -->
+    <dimen name="rounded_corner_content_padding">36px</dimen>
 
     <!-- Doze: check proximity sensor before pulsing? -->
     <bool name="doze_proximity_check_before_pulse">false</bool>
